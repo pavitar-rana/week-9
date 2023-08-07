@@ -1,6 +1,9 @@
 name: Deploy
 
-on: push # or the branch you want to deploy from
+on:
+  push:
+    branches:
+      - master # or the branch you want to deploy from
 
 jobs:
   deploy:
@@ -12,7 +15,6 @@ jobs:
 
       - name: SSH and deploy
         env:
-          DEFAULT_BRANCH: main
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         run: |
           echo "$SSH_PRIVATE_KEY" > keyfile
